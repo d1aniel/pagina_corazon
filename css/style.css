@@ -140,7 +140,7 @@ body::before {
   }
 
   .final-message {
-    bottom: max(5.5rem, calc(env(safe-area-inset-bottom) + 4.5rem));
+    bottom: max(9rem, calc(env(safe-area-inset-bottom) + 18vh));
     width: min(92vw, 420px);
     font-size: clamp(1.45rem, 7vw, 2.15rem);
     line-height: 1.12;
