@@ -1,0 +1,138 @@
+:root {
+  color-scheme: dark;
+  --photo-size: clamp(42px, 7.1vmin, 96px);
+  --photo-border: clamp(4px, 0.8vmin, 8px);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: #000;
+}
+
+body {
+  margin: 0;
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(255, 89, 132, 0.18), transparent 34%),
+    radial-gradient(circle at 16% 18%, rgba(255, 255, 255, 0.11), transparent 22%),
+    linear-gradient(180deg, #030205 0%, #09030a 48%, #000 100%);
+}
+
+.heart-field {
+  max-width: 1320px;
+  max-height: 940px;
+  transform-style: preserve-3d;
+  transition: filter 1200ms ease, transform 260ms ease-out;
+  will-change: transform, filter;
+}
+
+.heart-field.completed {
+  filter: drop-shadow(0 0 26px rgba(255, 74, 128, 0.3))
+    drop-shadow(0 0 66px rgba(255, 185, 205, 0.15));
+  animation: full-heart-pulse 4.8s ease-in-out infinite;
+}
+
+.photo-card {
+  --tx: 0px;
+  --ty: 0px;
+  --rot: 0deg;
+  --scale: 1;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--photo-size);
+  aspect-ratio: 0.78;
+  padding: var(--photo-border) var(--photo-border) calc(var(--photo-border) * 2.7);
+  border-radius: 5px;
+  background: linear-gradient(180deg, #fff 0%, #f7f0ea 100%);
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.38), 0 0 0 1px rgba(255, 255, 255, 0.32);
+  cursor: pointer;
+  opacity: 0;
+  transform: translate3d(var(--tx), var(--ty), 0) rotate(var(--rot)) scale(var(--scale));
+  transition:
+    transform 2400ms cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 1000ms ease,
+    box-shadow 280ms ease,
+    z-index 0ms linear;
+  will-change: transform, opacity;
+}
+
+.photo-card.arrived {
+  opacity: 1;
+}
+
+.photo-card img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 3px;
+  object-fit: cover;
+  background: #23121a;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .photo-card:hover {
+    --scale: 1.28;
+    z-index: 80;
+    box-shadow: 0 24px 54px rgba(0, 0, 0, 0.52), 0 0 28px rgba(255, 122, 164, 0.34);
+  }
+}
+
+.control-button {
+  display: inline-grid;
+  min-width: 44px;
+  min-height: 44px;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 1.05rem;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(18px);
+  transition: transform 180ms ease, background 180ms ease;
+}
+
+.control-button:hover,
+.control-button:focus-visible {
+  transform: translateY(-1px) scale(1.04);
+  background: rgba(255, 255, 255, 0.18);
+  outline: none;
+}
+
+.final-message.visible {
+  animation: final-message-in 2200ms ease forwards;
+}
+
+.lightbox-image {
+  max-width: min(92vw, 860px);
+  max-height: 86vh;
+  border: 10px solid #fff;
+  border-bottom-width: 28px;
+  border-radius: 7px;
+  object-fit: contain;
+  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.62), 0 0 55px rgba(255, 110, 156, 0.3);
+}
+
+@media (max-width: 640px) {
+  :root {
+    --photo-size: clamp(31px, 9.2vw, 47px);
+    --photo-border: 3px;
+  }
+
+  .photo-card {
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.42);
+  }
+}

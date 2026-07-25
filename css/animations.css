@@ -1,0 +1,120 @@
+@keyframes star-twinkle {
+  0%,
+  100% {
+    opacity: var(--min-opacity);
+    transform: translate3d(0, 0, 0) scale(0.9);
+  }
+
+  50% {
+    opacity: var(--max-opacity);
+    transform: translate3d(var(--drift-x), var(--drift-y), 0) scale(1.08);
+  }
+}
+
+@keyframes petal-fall {
+  0% {
+    opacity: 0;
+    transform: translate3d(var(--start-x), -12vh, 0) rotate(0deg);
+  }
+
+  12% {
+    opacity: 0.9;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--end-x), 112vh, 0) rotate(var(--rotation));
+  }
+}
+
+@keyframes floating-heart-rise {
+  0% {
+    opacity: 0;
+    transform: translate3d(var(--start-x), 110vh, 0) rotate(0deg) scale(0.72);
+  }
+
+  14% {
+    opacity: 0.76;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--end-x), -12vh, 0) rotate(var(--rotation)) scale(1.2);
+  }
+}
+
+@keyframes full-heart-pulse {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 22px rgba(255, 74, 128, 0.26));
+  }
+
+  50% {
+    filter: drop-shadow(0 0 36px rgba(255, 105, 154, 0.42))
+      drop-shadow(0 0 76px rgba(255, 216, 226, 0.22));
+  }
+}
+
+@keyframes final-message-in {
+  from {
+    opacity: 0;
+    transform: translate3d(-50%, -44%, 0) scale(0.96);
+    text-shadow: 0 0 0 rgba(255, 142, 177, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(-50%, -50%, 0) scale(1);
+    text-shadow: 0 0 28px rgba(255, 142, 177, 0.46);
+  }
+}
+
+@keyframes intro-exit {
+  to {
+    opacity: 0;
+    transform: translate3d(0, -14px, 0) scale(0.98);
+    visibility: hidden;
+  }
+}
+
+.intro-leaving {
+  animation: intro-exit 900ms ease forwards;
+}
+
+.star {
+  position: absolute;
+  width: var(--star-size);
+  height: var(--star-size);
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 0 calc(var(--star-size) * 4) rgba(255, 255, 255, 0.75);
+  animation: star-twinkle var(--duration) ease-in-out infinite;
+  animation-delay: var(--delay);
+}
+
+.petal {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: var(--petal-size);
+  height: calc(var(--petal-size) * 1.45);
+  border-radius: 85% 15% 75% 20%;
+  background:
+    radial-gradient(circle at 35% 28%, rgba(255, 255, 255, 0.75), transparent 18%),
+    linear-gradient(135deg, #ffc0d3 0%, #fa6f9f 52%, #ba235d 100%);
+  filter: drop-shadow(0 6px 10px rgba(143, 20, 72, 0.32));
+  animation: petal-fall var(--duration) linear forwards;
+  will-change: transform, opacity;
+}
+
+.mini-heart {
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: rgba(255, 124, 166, 0.7);
+  font-size: var(--heart-size);
+  line-height: 1;
+  text-shadow: 0 0 16px rgba(255, 99, 146, 0.42);
+  animation: floating-heart-rise var(--duration) ease-in forwards;
+  will-change: transform, opacity;
+}
