@@ -42,7 +42,8 @@ function getStageMetrics(container) {
   const bounds = container.getBoundingClientRect();
   const availableWidth = bounds.width;
   const availableHeight = bounds.height;
-  const square = Math.min(availableWidth, availableHeight * 1.05) * HEART_PADDING;
+  const responsivePadding = window.innerWidth <= 640 ? 0.66 : HEART_PADDING;
+  const square = Math.min(availableWidth, availableHeight * 1.05) * responsivePadding;
 
   return {
     width: square,

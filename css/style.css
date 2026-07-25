@@ -135,6 +135,19 @@ body::before {
     --photo-border: 3px;
   }
 
+  .heart-field {
+    transform: translate3d(var(--parallax-x), calc(var(--parallax-y) - 13vh), 0);
+  }
+
+  .final-message {
+    bottom: max(5.5rem, calc(env(safe-area-inset-bottom) + 4.5rem));
+    width: min(92vw, 420px);
+    font-size: clamp(1.45rem, 7vw, 2.15rem);
+    line-height: 1.12;
+    z-index: 35;
+    text-shadow: 0 0 18px rgba(255, 142, 177, 0.65), 0 2px 14px rgba(0, 0, 0, 0.95);
+  }
+
   .photo-card {
     box-shadow: 0 8px 18px rgba(0, 0, 0, 0.42);
   }
