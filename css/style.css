@@ -33,7 +33,10 @@ body::before {
 .heart-field {
   max-width: 1320px;
   max-height: 940px;
+  --parallax-x: 0px;
+  --parallax-y: 0px;
   transform-style: preserve-3d;
+  transform: translate3d(var(--parallax-x), calc(var(--parallax-y) - 8vh), 0);
   transition: filter 1200ms ease, transform 260ms ease-out;
   will-change: transform, filter;
 }

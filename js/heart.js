@@ -1,4 +1,4 @@
-const HEART_PADDING = 0.92;
+const HEART_PADDING = 0.78;
 
 function randomBetween(min, max) {
   return Math.random() * (max - min) + min;
@@ -119,7 +119,8 @@ export function setupParallax(container) {
     if (window.matchMedia("(pointer: coarse)").matches) return;
     const x = (event.clientX / window.innerWidth - 0.5) * 18;
     const y = (event.clientY / window.innerHeight - 0.5) * 14;
-    container.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+    container.style.setProperty("--parallax-x", `${x}px`);
+    container.style.setProperty("--parallax-y", `${y}px`);
   });
 
   if ("DeviceOrientationEvent" in window) {
@@ -129,7 +130,8 @@ export function setupParallax(container) {
         if (!window.matchMedia("(pointer: coarse)").matches) return;
         const x = Math.max(-8, Math.min(8, (event.gamma || 0) * 0.45));
         const y = Math.max(-8, Math.min(8, (event.beta || 0) * 0.24));
-        container.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+        container.style.setProperty("--parallax-x", `${x}px`);
+        container.style.setProperty("--parallax-y", `${y}px`);
       },
       { passive: true },
     );
